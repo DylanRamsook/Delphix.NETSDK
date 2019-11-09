@@ -46,6 +46,8 @@ You will need a Delphix environment with a valid license in order to run the int
 setx DELPHIX_USER secretusername
 setx DELPHIX_PASSWORD secretpassword
 setx DELPHIX_URL https://localhost:5000
+logoff
+#You need to relog in order for the environment variables to refresh!!
 ```
 
 ### Code Examples
