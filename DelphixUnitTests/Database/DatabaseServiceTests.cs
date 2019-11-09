@@ -23,34 +23,40 @@ using System.Diagnostics;
 namespace DelphixUnitTests
 {
     [TestClass]
-    public class ProvisionVdbSmokeTest
+    public class DatabaseServiceTests
     {
-        [TestMethod]
-        //Create and validate a session
-        public void CreateSessionTest()
-        {
-            ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3 | SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
-            //Trust all certificates
-            System.Net.ServicePointManager.ServerCertificateValidationCallback =
-                ((sender, certificate, chain, sslPolicyErrors) => true);
-            Session.CreateSession("admin", "yourpassword", "yourinstancename");
-            string cookie = Session.jSessionId.Value;
-
-            Assert.IsNotNull(cookie);
-        }
-
 
         [TestMethod]
         //Check that create a VDB call will return a response.
         public void ProvisionVdbTest()
         {
-            //Create and valiate a session
+            // Create and valiate a session
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3 | SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
-            //Trust all certificates
+            // Trust all certificates
             System.Net.ServicePointManager.ServerCertificateValidationCallback =
                 ((sender, certificate, chain, sslPolicyErrors) => true);
-            Session.CreateSession("admin", "yourpassword", "yourinstancename");
+
+            // Get a cookie + Authenticate
+            Session.CreateSession(System.Environment.GetEnvironmentVariable("DELPHIX_USER"), System.Environment.GetEnvironmentVariable("DELPHIX_PASSWORD"), System.Environment.GetEnvironmentVariable("DELPHIX_URL"));
             string cookie = Session.jSessionId.Value;
+
+
+            //Create helpers
+            GroupService groupHelper = new GroupService();
+            EnvironmentService delphixEnvironmentHelper = new EnvironmentService();
+            SourceConfigService sourceConfigHelper = new SourceConfigService();
+            RepositoryService repositoryHelper = new RepositoryService();
+            TimeflowService timeflowHelper = new TimeflowService();
+            SourceService sourceHelper = new SourceService();
+            DatabaseService dbHelp = new DatabaseService();
+
+            //Create a test group
+            string newGroupRef = groupHelper.CreateGroups("intTestGroup", true).result;
+            if (newGroupRef.Equals("Group already exists"))
+            {
+                Console.WriteLine("A group named intTestGroup already exists.  An attempt to delete the existing one was made, but there are active databases within the group.");
+            }
+
 
 
 

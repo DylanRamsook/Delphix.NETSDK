@@ -8,7 +8,7 @@ using DelphixLibrary.Group;
 
 namespace DelphixLibrary
 {
-    class CreateGroupsResponse : DelphixResponse
+    public class CreateGroupsResponse : DelphixResponse
     {
         public string result { get; set; }
         public string job { get; set; }

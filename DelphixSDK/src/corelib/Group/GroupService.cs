@@ -20,7 +20,7 @@ namespace DelphixLibrary.Group
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
         
-        public List<DelphixGroup> GetGroups() {
+        public GetGroupsResponse GetGroups() {
             //string groups = "";
             var request = new RestRequest("resources/json/delphix/group", Method.GET);
             //request.RequestFormat = DataFormat.Json;
@@ -36,7 +36,8 @@ namespace DelphixLibrary.Group
                 {
                     var deserializedDbs = response.result;
                     logger.Info(deserializedDbs.ToString());
-                    return deserializedDbs;
+                    //return deserializedDbs;
+                    return response;
                 }
                 else
                 {
@@ -53,7 +54,7 @@ namespace DelphixLibrary.Group
         }
 
         //not finished
-        public string CreateGroups(string groupName, bool force = false)
+        public CreateGroupsResponse CreateGroups(string groupName, bool force = false)
         {
             dynamic ProvisionParameters = new JObject();
             ProvisionParameters.type = "Group";
@@ -74,8 +75,9 @@ namespace DelphixLibrary.Group
             {
                 var deserializedDbs = response.result;
                 logger.Info(deserializedDbs.ToString());
-                
-                return deserializedDbs;
+
+                //return deserializedDbs;
+                return response;
             }
             if (response.status.Equals("ERROR"))
             {
@@ -88,16 +90,17 @@ namespace DelphixLibrary.Group
                         return CreateGroups(groupName);
                     case false:
                         logger.Error(response.result);
-                        return "Group already exists";
+                        //return "Group already exists";
+                        return response;
                 }
             }
 
             else
             {
                 Console.WriteLine("The status returned from the CreateGroup call was NOT OK");
-                return "";
+                return response;
             }
-            return groups;
+            return response;
 
         }
 
@@ -133,7 +136,7 @@ namespace DelphixLibrary.Group
         }
 
         public DelphixGroup GetGroupByGroupName(string groupName) {
-            List<DelphixGroup> groups = GetGroups();
+            List<DelphixGroup> groups = GetGroups().result;
             foreach (DelphixGroup delphixDb in groups)
             {
                 groupName = groupName.ToUpper();
