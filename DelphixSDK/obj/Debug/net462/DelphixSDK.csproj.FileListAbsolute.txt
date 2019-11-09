@@ -1,0 +1,13 @@
+C:\Users\dylanr\Development\DelphixSDK\DelphixSDK\bin\Debug\net462\NLog.config
+C:\Users\dylanr\Development\DelphixSDK\DelphixSDK\bin\Debug\net462\DelphixSDK.dll
+C:\Users\dylanr\Development\DelphixSDK\DelphixSDK\bin\Debug\net462\DelphixSDK.pdb
+C:\Users\dylanr\Development\DelphixSDK\DelphixSDK\bin\Debug\net462\Newtonsoft.Json.dll
+C:\Users\dylanr\Development\DelphixSDK\DelphixSDK\bin\Debug\net462\NLog.dll
+C:\Users\dylanr\Development\DelphixSDK\DelphixSDK\bin\Debug\net462\RestSharp.dll
+C:\Users\dylanr\Development\DelphixSDK\DelphixSDK\obj\Debug\net462\DelphixSDK.csproj.CoreCompileInputs.cache
+C:\Users\dylanr\Development\DelphixSDK\DelphixSDK\obj\Debug\net462\DelphixSDK.AssemblyInfoInputs.cache
+C:\Users\dylanr\Development\DelphixSDK\DelphixSDK\obj\Debug\net462\DelphixSDK.AssemblyInfo.cs
+C:\Users\dylanr\Development\DelphixSDK\DelphixSDK\obj\Debug\net462\DelphixSDK.csproj.CopyComplete
+C:\Users\dylanr\Development\DelphixSDK\DelphixSDK\obj\Debug\net462\DelphixSDK.dll
+C:\Users\dylanr\Development\DelphixSDK\DelphixSDK\obj\Debug\net462\DelphixSDK.pdb
+C:\Users\dylanr\Development\DelphixSDK\DelphixSDK\obj\Debug\net462\DelphixSDK.csprojAssemblyReference.cache

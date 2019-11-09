@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.902
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DelphixSDK", "DelphixSDK\DelphixSDK.csproj", "{721B1749-F007-4D64-8627-D8747460D5C5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DelphixTests", "DelphixUnitTests\DelphixTests.csproj", "{3DD43B1C-21A9-463C-A53A-F856C48840C6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{721B1749-F007-4D64-8627-D8747460D5C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{721B1749-F007-4D64-8627-D8747460D5C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{721B1749-F007-4D64-8627-D8747460D5C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{721B1749-F007-4D64-8627-D8747460D5C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3DD43B1C-21A9-463C-A53A-F856C48840C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3DD43B1C-21A9-463C-A53A-F856C48840C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3DD43B1C-21A9-463C-A53A-F856C48840C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3DD43B1C-21A9-463C-A53A-F856C48840C6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {17C9BE83-6D91-49C5-BF0E-2F06E09A83AF}
+	EndGlobalSection
+EndGlobal
