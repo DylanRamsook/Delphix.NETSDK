@@ -58,7 +58,7 @@ namespace DelphixLibrary.Environment
 
         }
 
-        public string CreateTargetEnv(string sqlServerName, string sqlServerIp, string serverPassword, string serverUser, string buildNumber, bool wait = false)
+        public CreateEnvironmentResponse CreateTargetEnv(string sqlServerName, string sqlServerIp, string serverPassword, string serverUser, string buildNumber, bool wait = false)
         {
 
             dynamic hostEnvironment = new JObject();
@@ -122,9 +122,10 @@ namespace DelphixLibrary.Environment
                         JobService jobHelper = new JobService();
                         DelphixJob completedJob = jobHelper.GetJobByRefAndWait(deserializedDbs);
                         jobHelper.Dispose();
-                        return completedJob.parentActionState;
+                        //return completedJob.parentActionState;
+                        return response;
                     }
-                    return deserializedDbs;
+                    return response;
                 }
                 else
                 {
@@ -133,7 +134,7 @@ namespace DelphixLibrary.Environment
                     logger.Error("There was an error creating a Job for the CreateTargetEnv call.  The response status was: " + response.status + "Request Body:");
                     logger.Info(ProvisionParameters.ToString());
 
-                    return response.status;
+                    return response;
                 }
             }
             catch (Exception ex)
@@ -144,7 +145,7 @@ namespace DelphixLibrary.Environment
                 throw ex;
             }
         }
-        public async Task<string> CreateTargetEnvAsync(string sqlServerName, string sqlServerIp, string serverPassword, string serverUser, string buildNumber)
+        public async Task<CreateEnvironmentResponse> CreateTargetEnvAsync(string sqlServerName, string sqlServerIp, string serverPassword, string serverUser, string buildNumber)
         {
             logger.Info("ASYNC Target Creation Requested for " + sqlServerName );
             return await Task.Run(() => CreateTargetEnv(sqlServerName,sqlServerIp,serverPassword,serverUser,buildNumber));

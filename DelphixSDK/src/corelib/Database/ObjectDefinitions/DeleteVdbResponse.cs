@@ -4,14 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using DelphixLibrary.Environment;
-
 namespace DelphixLibrary
 {
-    public class CreateEnvironmentResponse : DelphixResponse
+    public class DeleteVdbResponse : DelphixResponse
     {
         public string result { get; set; }
         public string job { get; set; }
         public string action { get; set; }
+
     }
 }

@@ -165,36 +165,30 @@ namespace DelphixLibrary.Database
             }
         }
 
-        public string DeleteVdb(DelphixDatabase dbToDelete)
+        public DeleteVdbResponse DeleteVdb(DelphixDatabase dbToDelete)
         {
 
-            //dynamic DeleteParameters = new JObject();
-            //DeleteParameters.type = "DeleteParameters";
-
-
-
-
-            // DeleteParameters = JsonConvert.SerializeObject(DeleteParameters);
             var request = new RestRequest("resources/json/delphix/database/" + dbToDelete.reference.ToString(), Method.DELETE);
             request.RequestFormat = DataFormat.Json;
-            // request.AddBody(DeleteParameters);
+
 
             request.AddHeader("content-header", "application/json");
             request.AddCookie(Session.jSessionId.Name, Session.jSessionId.Value);
 
             var result = Session.delphixClient.Delete(request);
             string dbs = result.Content;
-            //Console.WriteLine(DeleteParameters);
-            var response = JsonConvert.DeserializeObject<ProvisionVdbResponse>(dbs);
+
+            var response = JsonConvert.DeserializeObject<DeleteVdbResponse>(dbs);
             if (response.status.Equals("OK"))
             {
                 var deserializedDbs = response.job;
-                return deserializedDbs;
+                //return deserializedDbs;
+                return response;
             }
             else
             {
                 Console.WriteLine("The status returned from the GetDatabases call was NOT OK");
-                return "";
+                return response;
             }
 
         }
