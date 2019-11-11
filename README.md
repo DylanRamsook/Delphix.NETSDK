@@ -1,4 +1,4 @@
-https://travis-ci.com/DylanRamsook/Delphix.NETSDK
+https://travis-ci.com/DylanRamsook/Delphix.NETSDK.svg?branch=master
 
 https://www.nuget.org/packages/Delphix.NETSDK/
 
