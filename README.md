@@ -6,7 +6,7 @@ https://www.nuget.org/packages/Delphix.NETSDK/
 
 # Delphix.NET
 
-[![MyGet Build Status](buildstatusIdentifier)](https://www.myget.org/)
+[![MyGet Build Status](https://travis-ci.com/DylanRamsook/Delphix.NETSDK.svg?branch=master)](https://travis-ci.com/DylanRamsook/Delphix.NETSDK)
 
 Delphix.NET is an Delphix .NET SDK, written for the Microsoft .NET platform.  It is designed to enable developers to seamlessly interact with the Delphix API.
 
