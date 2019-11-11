@@ -1,3 +1,5 @@
+https://travis-ci.com/DylanRamsook/Delphix.NETSDK
+
 https://www.nuget.org/packages/Delphix.NETSDK/
 
 
