@@ -60,11 +60,11 @@ logoff
 
 
 #### TODO
-Review model 
-Provisioning VDB Method for mutiple types
-TESTS
-Models for Gets (multiple object types) vs Posts 
-Travis CI for running integration tests
-Custom wait times from environment variables
-Documentation
-Add postman
+ - Review model 
+- Provisioning VDB Method for mutiple types
+- TESTS
+- Models for Gets (multiple object types) vs Posts 
+- Travis CI for running integration tests
+- Custom wait times from environment variables
+- Documentation
+- Add postman
