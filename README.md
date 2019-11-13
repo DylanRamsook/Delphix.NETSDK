@@ -68,3 +68,4 @@ logoff
 - Custom wait times from environment variables
 - Documentation
 - Add postman
+- Look into autogenerating the models from delphix.json
