@@ -14,6 +14,15 @@
           "lib/net45/_._": {}
         }
       },
+      "mustache-sharp/1.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/net45/mustache-sharp.dll": {}
+        },
+        "runtime": {
+          "lib/net45/mustache-sharp.dll": {}
+        }
+      },
       "Newtonsoft.Json/12.0.2": {
         "type": "package",
         "compile": {
@@ -153,6 +162,19 @@
         "version.txt"
       ]
     },
+    "mustache-sharp/1.0.0": {
+      "sha512": "+RTxWGLH5p0ibl7XDbb8pOznAdqwxH3zic40eL1gq5xl8jZt3CFc04KSLLFWM3PgvlTzfbzDJfjzF7rCglqGAA==",
+      "type": "package",
+      "path": "mustache-sharp/1.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net45/mustache-sharp.dll",
+        "lib/netstandard2.0/mustache-sharp.dll",
+        "mustache-sharp.1.0.0.nupkg.sha512",
+        "mustache-sharp.nuspec"
+      ]
+    },
     "Newtonsoft.Json/12.0.2": {
       "sha512": "rTK0s2EKlfHsQsH6Yx2smvcTCeyoDNgCW7FEYyV01drPlh2T243PR2DiDXqtC5N4GDm4Ma/lkxfW5a/4793vbA==",
       "type": "package",
@@ -266,7 +288,8 @@
       "NLog >= 4.6.7",
       "NLog.Config >= 4.6.7",
       "Newtonsoft.Json >= 12.0.2",
-      "RestSharp >= 106.6.10"
+      "RestSharp >= 106.6.10",
+      "mustache-sharp >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -274,7 +297,7 @@
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
-    "version": "1.0.2",
+    "version": "1.0.3",
     "restore": {
       "projectUniqueName": "C:\\Users\\dylanr\\Development\\DelphixSDK\\DelphixSDK\\DelphixSDK.csproj",
       "projectName": "Delphix.NETSDK",
@@ -329,6 +352,10 @@
           "RestSharp": {
             "target": "Package",
             "version": "[106.6.10, )"
+          },
+          "mustache-sharp": {
+            "target": "Package",
+            "version": "[1.0.0, )"
           }
         }
       }

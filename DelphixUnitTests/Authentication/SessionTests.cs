@@ -5,7 +5,7 @@ using System.Net;
 
 namespace DelphixUnitTests
 {
-    [TestClass]
+    [TestClass, TestCategory("Functional")]
     public class UnitTest1
     {
         [TestMethod]

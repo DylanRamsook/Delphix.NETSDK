@@ -11,3 +11,4 @@ C:\Users\dylanr\Development\DelphixSDK\DelphixSDK\obj\Debug\net462\DelphixSDK.cs
 C:\Users\dylanr\Development\DelphixSDK\DelphixSDK\obj\Debug\net462\DelphixSDK.dll
 C:\Users\dylanr\Development\DelphixSDK\DelphixSDK\obj\Debug\net462\DelphixSDK.pdb
 C:\Users\dylanr\Development\DelphixSDK\DelphixSDK\obj\Debug\net462\DelphixSDK.csprojAssemblyReference.cache
+C:\Users\dylanr\Development\DelphixSDK\DelphixSDK\bin\Debug\net462\mustache-sharp.dll

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using DelphixLibrary;
 using DelphixLibrary.Authentication;
 using DelphixLibrary.Database;
 using DelphixLibrary.Environment;
@@ -23,12 +24,12 @@ using System.Diagnostics;
 namespace DelphixUnitTests
 {
     [TestClass]
-    public class DatabaseServiceTests
+    public class GroupServiceTests
     {
 
-        [TestMethod, TestCategory("Integration")]
+        [TestMethod, TestCategory("Functional")]
         //Check that create a VDB call will return a response.
-        public void ProvisionVdbTest()
+        public void CreateGroupTest()
         {
             // Create and valiate a session
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Ssl3 | SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
@@ -43,21 +44,15 @@ namespace DelphixUnitTests
 
             //Create helpers
             GroupService groupHelper = new GroupService();
-            EnvironmentService delphixEnvironmentHelper = new EnvironmentService();
-            SourceConfigService sourceConfigHelper = new SourceConfigService();
-            RepositoryService repositoryHelper = new RepositoryService();
-            TimeflowService timeflowHelper = new TimeflowService();
-            SourceService sourceHelper = new SourceService();
-            DatabaseService dbHelp = new DatabaseService();
+
 
             //Create a test group
-            CreateGroupsResponse newGroupRef = groupHelper.CreateGroups("intTestGroup", true);
-            if (newGroupRef.result.Equals("Group already exists"))
+            CreateGroupsResponse newGroupRef = groupHelper.CreateGroups("CreateUnit", true);
+            if (newGroupRef.Equals("Group already exists"))
             {
-                Console.WriteLine("A group named intTestGroup already exists.  An attempt to delete the existing one was made, but there are active databases within the group.");
+                Console.WriteLine("A group named CreateUnit already exists.  An attempt to delete the existing one was made, but there are active databases within the group.");
             }
 
-            //Create a target server on Delphix
 
 
 

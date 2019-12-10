@@ -70,7 +70,7 @@ namespace DelphixLibrary.Group
             request.AddCookie(Session.jSessionId.Name, Session.jSessionId.Value);
             var result = Session.delphixClient.Post(request);
             string groups = result.Content;
-            var response = JsonConvert.DeserializeObject<CreateGroupsResponse>(groups);
+            CreateGroupsResponse response = JsonConvert.DeserializeObject<CreateGroupsResponse>(groups);
             if (response.status.Equals("OK"))
             {
                 var deserializedDbs = response.result;

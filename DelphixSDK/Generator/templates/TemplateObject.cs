@@ -18,5 +18,16 @@ namespace DelphixLibrary.Generator
             public bool enabled { get; set; }
             public string host { get; set; }
             public object proxy { get; set; }
+
+            private string outputRoot { get; set; }
+
+        private void generateFile(String name, String contents)
+        {
+            System.IO.File.WriteAllText(outputRoot + @"/" + name + ".cs", contents);
         }
+
+
+    }
+
+
 }

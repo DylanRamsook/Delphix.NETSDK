@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 using DelphixLibrary.Group;
 
-namespace DelphixLibrary
+namespace DelphixLibrary.Group
 {
     public class CreateGroupsResponse : DelphixResponse
     {

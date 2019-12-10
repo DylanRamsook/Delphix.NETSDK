@@ -82,13 +82,16 @@ namespace DelphixLibrary.Database
         string sourceDbRef,
         DelphixDatabase sourceDb,
         string groupRefString,
+        string dbName,
         bool wait = false
         )
         {
-            string dbName = sourceDb.name.Substring(sourceDb.name.LastIndexOf('-') + 1).Trim();
+
+                //dbName = sourceDb.name.Substring(sourceDb.name.LastIndexOf('-') + 1).Trim();
+          
 
             dynamic container = new JObject();
-            container.name = "TARGET" + dbName + "12345"; //Fix this
+            container.name = dbName; //Fix this
             container.type = "MSSqlDatabaseContainer";
             container.group = groupRefString.ToString();
 
