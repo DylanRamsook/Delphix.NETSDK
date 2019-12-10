@@ -1,10 +1,12 @@
+https://travis-ci.com/DylanRamsook/Delphix.NETSDK
+
 https://www.nuget.org/packages/Delphix.NETSDK/
 
 
 
 # Delphix.NET
 
-[![MyGet Build Status](buildstatusIdentifier)](https://www.myget.org/)
+[![MyGet Build Status](https://travis-ci.com/DylanRamsook/Delphix.NETSDK.svg?branch=master)](https://travis-ci.com/DylanRamsook/Delphix.NETSDK)
 
 Delphix.NET is an Delphix .NET SDK, written for the Microsoft .NET platform.  It is designed to enable developers to seamlessly interact with the Delphix API.
 
@@ -55,3 +57,15 @@ logoff
 
 
 #### This is not an official Delphix Project
+
+
+#### TODO
+ - Review model 
+- Provisioning VDB Method for mutiple types
+- TESTS
+- Models for Gets (multiple object types) vs Posts 
+- Travis CI for running integration tests
+- Custom wait times from environment variables
+- Documentation
+- Add postman
+- Look into autogenerating the models from delphix.json
