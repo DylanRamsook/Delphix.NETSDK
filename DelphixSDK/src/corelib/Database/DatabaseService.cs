@@ -82,7 +82,7 @@ namespace DelphixLibrary.Database
         string sourceDbRef,
         DelphixDatabase sourceDb,
         string groupRefString,
-        string dbName,
+        string displayDbName,
         bool wait = false
         )
         {
@@ -91,7 +91,7 @@ namespace DelphixLibrary.Database
           
 
             dynamic container = new JObject();
-            container.name = dbName; //Fix this
+            container.name = displayDbName; //Fix this
             container.type = "MSSqlDatabaseContainer";
             container.group = groupRefString.ToString();
 
@@ -102,7 +102,7 @@ namespace DelphixLibrary.Database
 
             dynamic sourceConfig = new JObject();
             sourceConfig.type = "MSSqlSIConfig";
-            sourceConfig.databaseName = dbName;  //Fix this
+            sourceConfig.databaseName = sourceDb.name.Substring(sourceDb.name.LastIndexOf('-') + 1).Trim(); //Fix this
             sourceConfig.repository = destinationRepo.reference.ToString();
 
             dynamic timeflowPointParameters = new JObject();
@@ -153,10 +153,12 @@ namespace DelphixLibrary.Database
                 }
                 else
                 {
+                    var err = JsonConvert.DeserializeObject<DelphixResponseError>(result.Content) ;
                     //This means there was an error actually creating a job to provision a Vdb.  Check Request Body + if Delphix was reachable. 
                     Console.WriteLine("The status returned from the ProvisionVDBs call was NOT OK");
                     logger.Error("There was an error creating a Job for the ProvisionVDB call.  The response status was: " + response.status + "Request Body:");
                     logger.Info(ProvisionParameters.ToString());
+                    logger.Error(err.error.details) ;
                     //return response.status;
                     return response;
                 }

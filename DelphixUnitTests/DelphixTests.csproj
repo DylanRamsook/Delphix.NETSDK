@@ -58,6 +58,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Database\DatabaseServiceTests.cs" />
     <Compile Include="EnvironmentVariablesTests.cs" />
+    <Compile Include="EnvironmentService\EnvironmentServiceTests.cs" />
+    <Compile Include="SelfService\TemplateServiceTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

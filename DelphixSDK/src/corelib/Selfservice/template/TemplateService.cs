@@ -10,13 +10,16 @@ using RestSharp.Serialization;
 using Newtonsoft.Json.Linq;
 using System.Threading;
 using System.Net;
+using NLog;
 
 using DelphixLibrary.Authentication;
+using DelphixLibrary.Database;
 
 namespace DelphixLibrary.Template
 {
-    class TemplateService
+    public class TemplateService
     {
+        private static Logger logger = LogManager.GetCurrentClassLogger();
         public List<DelphixTemplate> GetTemplates()
         {
             var request = new RestRequest("resources/json/delphix/selfservice/template", Method.GET);
@@ -46,70 +49,126 @@ namespace DelphixLibrary.Template
 
         }
 
-        //public string CreateTemplate()
-        //{
-        //    string dbName = sourceDb.name.Substring(sourceDb.name.LastIndexOf('-') + 1).Trim();
+        public DelphixResponse CreateTemplate(string environmentName, List<DelphixDatabase> vdbs)
+        /*
+         * EXAMPLE REQUEST BODY:
+         *{
+  "name": "CTT42",
+  "dataSources": [
+    {
+      "source": {
+        "properties": {},
+        "priority": 1,
+        "name": "cttdsmeta",
+        "type": "JSDataSource"
+      },
+      "container": "MSSQL_DB_CONTAINER-770",
+      "type": "JSDataSourceCreateParameters"
+    },
+    {
+      "source": {
+        "properties": {},
+        "priority": 1,
+        "name": "ctt42dsss",
+        "type": "JSDataSource"
+      },
+      "container": "MSSQL_DB_CONTAINER-757",
+      "type": "JSDataSourceCreateParameters"
+    }
+  ],
+  "properties": {},
+  "type": "JSDataTemplateCreateParameters"
+}
 
-        //    dynamic container = new JObject();
-        //    container.name = "TARGET" + dbName + "12345"; //Fix this
-        //    container.type = "MSSqlDatabaseContainer";
-        //    container.group = "GROUP-7";
+        EXAMPLE ERROR RESPONSE (200 OK RESPONSE) :
+        {
+    "type": "ErrorResult",
+    "status": "ERROR",
+    "error": {
+        "type": "APIError",
+        "details": "The operation could not be completed because a JS_DATA_TEMPLATE with the following fields already exists: name (CTT42).",
+        "action": "Resolve the conflict by changing the values of the following fields and try again: name.",
+        "id": "exception.executor.object.exists",
+        "commandOutput": null
+    }
+}
 
-        //    dynamic source = new JObject();
-        //    source.type = "MSSqlVirtualSource";
-        //    source.config = sourceSourceConfig.reference.ToString();
-        //    source.allowAutoVDBRestartOnHostReboot = true;
-
-        //    dynamic sourceConfig = new JObject();
-        //    sourceConfig.type = "MSSqlSIConfig";
-        //    sourceConfig.databaseName = dbName;  //Fix this
-        //    sourceConfig.repository = destinationRepo.reference.ToString();
-
-        //    dynamic timeflowPointParameters = new JObject();
-        //    timeflowPointParameters.type = "TimeflowPointSemantic";
-        //    timeflowPointParameters.location = "LATEST_SNAPSHOT";
-        //    timeflowPointParameters.container = sourceDbRef;
-        //    //timeflowPointParameters.timeflow = snapshot.reference;
-
-        //    dynamic ProvisionParameters = new JObject();
-        //    ProvisionParameters.container = container;
-        //    ProvisionParameters.source = source;
-        //    ProvisionParameters.sourceConfig = sourceConfig;
-        //    ProvisionParameters.timeflowPointParameters = timeflowPointParameters;
-        //    ProvisionParameters.type = "MSSqlProvisionParameters";
+        EXAMPLE SUCCESS RESPONSE: 
+        {
+    "type": "OKResult",
+    "status": "OK",
+    "result": "JS_DATA_TEMPLATE-8",
+    "job": null,
+    "action": "ACTION-11675"
+}
+        */
 
 
+        {
 
+            CreateDelphixTemplateRequest requestBody = new CreateDelphixTemplateRequest();
+            requestBody.dataSources = new List<DataSource>();
+            requestBody.type = "JSDataTemplateCreateParameters";
+            requestBody.name = environmentName;
+            foreach (DelphixDatabase vdb in vdbs)
+            {
+                DataSource anuddaOne = new DataSource();
+                anuddaOne.source = new Source();
 
-        //    ProvisionParameters = JsonConvert.SerializeObject(ProvisionParameters);
-        //    var request = new RestRequest("resources/json/delphix/database/provision", Method.POST);
-        //    request.RequestFormat = DataFormat.Json;
-        //    request.AddBody(ProvisionParameters);
+                //anuddaOne.source.properties;
+                anuddaOne.source.priority = 1;
+                anuddaOne.source.name = vdb.name;
+                anuddaOne.source.type = "JSDataSource";
+                anuddaOne.container = vdb.reference;
+                anuddaOne.type = "JSDataSourceCreateParameters";
 
-        //    request.AddHeader("content-header", "application/json");
-        //    request.AddCookie(Session.jSessionId.Name, Session.jSessionId.Value);
-        //    try
-        //    {
-        //        var result = Session.delphixClient.Post(request);
-        //        string dbs = result.Content;
-        //        Console.WriteLine(ProvisionParameters);
-        //        var response = JsonConvert.DeserializeObject<ProvisionVdbResponse>(dbs);
-        //        if (response.status.Equals("OK"))
-        //        {
-        //            var deserializedDbs = response.job;
-        //            return deserializedDbs;
-        //        }
-        //        else
-        //        {
-        //            Console.WriteLine("The status returned from the GetDatabases call was NOT OK");
-        //            return "";
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
+                requestBody.dataSources.Add(anuddaOne) ;
+            }
 
-        //        throw ex;
-        //    }
-        //}
+            
+
+            var settings = new JsonSerializerSettings
+            {
+                NullValueHandling = NullValueHandling.Ignore,
+                MissingMemberHandling = MissingMemberHandling.Ignore
+            };
+            var jsRequestBody = JsonConvert.SerializeObject(requestBody,settings);
+            
+            var request = new RestRequest("resources/json/delphix/selfservice/template", Method.POST);
+            request.RequestFormat = DataFormat.Json;
+            request.AddJsonBody(jsRequestBody);
+
+            request.AddHeader("content-header", "application/json");
+            request.AddCookie(Session.jSessionId.Name, Session.jSessionId.Value);
+            try
+            {
+                var result = Session.delphixClient.Post(request);
+                string dbs = result.Content;
+                Console.WriteLine(requestBody);
+                var response = JsonConvert.DeserializeObject<DelphixResponse>(dbs);
+                if (response.status.Equals("OK"))
+                {
+                    //var deserializedDbs = response.job;
+                    logger.Info(response.ToString());
+                    return response;
+                }
+                else
+                {
+                    var err = JsonConvert.DeserializeObject<DelphixResponseError>(result.Content);
+                    //This means there was an error actually creating a job to provision a Vdb.  Check Request Body + if Delphix was reachable. 
+                    Console.WriteLine("The status returned from the CreateTemplate call was NOT OK");
+                    logger.Error("There was an error creating a Job for the CreateTemplate call.  The response status was: " + response.status + "Request Body:");
+                    logger.Info(requestBody.ToString());
+                    logger.Error(err.error.details);
+                    //return response.status;
+                    return response;
+                }
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex);
+                throw ex;
+            }
+        }
     }
 }

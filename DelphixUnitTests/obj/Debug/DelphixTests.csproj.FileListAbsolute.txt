@@ -18,3 +18,4 @@ C:\Users\dylanr\Development\DelphixSDK\DelphixUnitTests\obj\Debug\DelphixTests.c
 C:\Users\dylanr\Development\DelphixSDK\DelphixUnitTests\obj\Debug\DelphixTests.csproj.CopyComplete
 C:\Users\dylanr\Development\DelphixSDK\DelphixUnitTests\obj\Debug\DelphixUnitTests.dll
 C:\Users\dylanr\Development\DelphixSDK\DelphixUnitTests\obj\Debug\DelphixUnitTests.pdb
+C:\Users\dylanr\Development\DelphixSDK\DelphixUnitTests\bin\Debug\mustache-sharp.dll
