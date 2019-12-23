@@ -21,7 +21,7 @@ https://github.com/DylanRamsook/Delphix.NETSDK</description>
         <dependency id="RestSharp" version="106.6.10" exclude="Build,Analyzers" />
         <dependency id="mustache-sharp" version="1.0.0" exclude="Build,Analyzers" />
       </group>
-      <group targetFramework=".NETCoreApp2.0">
+      <group targetFramework=".NETCoreApp3.0">
         <dependency id="Microsoft.CSharp" version="4.6.0" exclude="Build,Analyzers" />
         <dependency id="NLog" version="4.6.7" exclude="Build,Analyzers" />
         <dependency id="NLog.Config" version="4.6.7" exclude="Build,Analyzers" />
@@ -32,7 +32,7 @@ https://github.com/DylanRamsook/Delphix.NETSDK</description>
     </dependencies>
   </metadata>
   <files>
-    <file src="C:\Users\dylanr\Development\DelphixSDK\DelphixSDK\bin\Debug\net462\DelphixSDK.dll" target="lib\net462\DelphixSDK.dll" />
-    <file src="C:\Users\dylanr\Development\DelphixSDK\DelphixSDK\bin\Debug\netcoreapp2.0\DelphixSDK.dll" target="lib\netcoreapp2.0\DelphixSDK.dll" />
+    <file src="/Users/dylanr/ProdRepos/Delphix.NETSDK/DelphixSDK/bin/Debug/net462/DelphixSDK.dll" target="lib/net462/DelphixSDK.dll" />
+    <file src="/Users/dylanr/ProdRepos/Delphix.NETSDK/DelphixSDK/bin/Debug/netcoreapp3.0/DelphixSDK.dll" target="lib/netcoreapp3.0/DelphixSDK.dll" />
   </files>
 </package>

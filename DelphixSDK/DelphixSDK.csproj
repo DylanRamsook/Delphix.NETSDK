@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net462;netcoreapp2.0;</TargetFrameworks>
+    <TargetFrameworks>netcoreapp3.0;net462;</TargetFrameworks>
     <Authors>Dylan Ramsook</Authors>
     <Description>(Work in progress) Not an official Delphix project.
 
@@ -12,11 +12,12 @@ https://github.com/DylanRamsook/Delphix.NETSDK
     <PackageTags>Delphix</PackageTags>
     <PackageId>Delphix.NETSDK</PackageId>
     <Product>Delphix.NET SDK</Product>
-    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
     <FileVersion>1.0.0.0</FileVersion>
     <Version>1.0.7</Version>
+    <PackOnBuild>true</PackOnBuild>
+    <Owners>Dylan Ramsook</Owners>
   </PropertyGroup>
 
   <ItemGroup>

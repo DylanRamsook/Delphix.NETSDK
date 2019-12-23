@@ -1,0 +1,9 @@
+/Users/dylanr/ProdRepos/Delphix.NETSDK/DelphixSDK/bin/Debug/netcoreapp3.0/NLog.config
+/Users/dylanr/ProdRepos/Delphix.NETSDK/DelphixSDK/bin/Debug/netcoreapp3.0/DelphixSDK.deps.json
+/Users/dylanr/ProdRepos/Delphix.NETSDK/DelphixSDK/bin/Debug/netcoreapp3.0/DelphixSDK.dll
+/Users/dylanr/ProdRepos/Delphix.NETSDK/DelphixSDK/bin/Debug/netcoreapp3.0/DelphixSDK.pdb
+/Users/dylanr/ProdRepos/Delphix.NETSDK/DelphixSDK/obj/Debug/netcoreapp3.0/DelphixSDK.csprojAssemblyReference.cache
+/Users/dylanr/ProdRepos/Delphix.NETSDK/DelphixSDK/obj/Debug/netcoreapp3.0/DelphixSDK.AssemblyInfoInputs.cache
+/Users/dylanr/ProdRepos/Delphix.NETSDK/DelphixSDK/obj/Debug/netcoreapp3.0/DelphixSDK.AssemblyInfo.cs
+/Users/dylanr/ProdRepos/Delphix.NETSDK/DelphixSDK/obj/Debug/netcoreapp3.0/DelphixSDK.dll
+/Users/dylanr/ProdRepos/Delphix.NETSDK/DelphixSDK/obj/Debug/netcoreapp3.0/DelphixSDK.pdb
