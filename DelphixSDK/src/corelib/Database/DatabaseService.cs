@@ -61,7 +61,107 @@ namespace DelphixLibrary.Database
             }
 
         }
+        
+        public DelphixResponse LinkVdb(string sqlUser,string sqlPassword,
+        bool wait = false
+        )
+        {
 
+            dynamic syncParameters = new JObject();
+            syncParameters.type = "MSSqlExistingMostRecentBackupSyncParameters";
+
+            dynamic operations = new JObject();
+            operations.postSync = "ExternalBackupIngestionStrategy";
+            operations.preSync = "FULL_OR_DIFFERENTIAL";
+            operations.type = "LinkedSourceOperations";
+
+            dynamic sourcingPolicy = new JObject();
+            sourcingPolicy.logsyncEnabled = false;
+            sourcingPolicy.type = "SourcingPolicy";
+
+            dynamic ingestionStrategy = new JObject();
+            ingestionStrategy.type = "ExternalBackupIngestionStrategy";
+            ingestionStrategy = "FULL_OR_DIFFERENTIAL";
+
+            dynamic dbCredential = new JObject();
+            dbCredential.password = sqlPassword;
+            dbCredential.type = "PasswordCredential";
+
+            dynamic linkData = new JObject();
+            linkData.config = "TimeflowPointSemantic";
+            linkData.DbCredentials = dbCredential;
+            linkData.dbUser = sqlUser;
+            linkData.encryptionKey = "";
+            linkData.ingestionStrategy = ingestionStrategy;
+            linkData.mssqlCommvaultConfig = null;
+            linkData.mssqlNetbackupConfig = null;
+            linkData.operations = operations;
+            linkData.pptHostUser = "HOST_USER-3";
+            linkData.pptRepository = "";
+            linkData.sharedBackupLocations = "";
+            linkData.sourceHostUser = "";
+            linkData.sourcingPolicy = sourcingPolicy;
+            linkData.syncParameters = syncParameters;
+            linkData.name = "";
+            linkData.type = "LinkParameters";
+
+            dynamic ProvisionParameters = new JObject();
+            ProvisionParameters.description = "";      // A description for this.
+            ProvisionParameters.group = "";            // The group to create this new dSource 
+            ProvisionParameters.linkData = linkData;   // All the info about the link to create
+
+
+
+            //ProvisionParameters = JsonConvert.SerializeObject(ProvisionParameters);
+            var request = new RestRequest("resources/json/delphix/database/provision", Method.POST);
+            request.RequestFormat = DataFormat.Json;
+            request.AddBody(ProvisionParameters);
+
+            request.AddHeader("content-header", "application/json");
+            request.AddCookie(Session.jSessionId.Name, Session.jSessionId.Value);
+            logger.Info(request.ToString());
+            try
+            {
+                var result = Session.delphixClient.Post(request);
+                string dbs = result.Content;
+                Console.WriteLine(ProvisionParameters);
+                var response = JsonConvert.DeserializeObject<ProvisionVdbResponse>(dbs);
+                if (response.status.Equals("OK"))
+                {
+                    var deserializedDbs = response.job;
+                    logger.Info(deserializedDbs.ToString());
+
+                    //If we want to wait until the Job is completed...
+                    if (wait)
+                    {
+                        JobService jobHelper = new JobService();
+                        DelphixJob completedJob = jobHelper.GetJobByRefAndWait(deserializedDbs);
+                        jobHelper.Dispose();
+                        //return completedJob.parentActionState;
+                        return response;
+                    }
+
+
+                    return response;
+                }
+                else
+                {
+                    var err = JsonConvert.DeserializeObject<DelphixResponseError>(result.Content);
+                    //This means there was an error actually creating a job to provision a Vdb.  Check Request Body + if Delphix was reachable. 
+                    Console.WriteLine("The status returned from the ProvisionVDBs call was NOT OK");
+                    logger.Error("There was an error creating a Job for the ProvisionVDB call.  The response status was: " + response.status + "Request Body:");
+                    logger.Info(ProvisionParameters.ToString());
+                    logger.Error(err.error.details);
+                    //return response.status;
+                    return response;
+                }
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex);
+                throw ex;
+            }
+        }
         /*
          * Provision a VDB
          * https://{{yourDelphixEnvironment}}/api/#database

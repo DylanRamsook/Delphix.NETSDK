@@ -1,9 +1,14 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net462</TargetFramework>
+    <TargetFrameworks>net462;netcoreapp2.0;</TargetFrameworks>
     <Authors>Dylan Ramsook</Authors>
-    <Description>C# Project for interacting with Delphix API</Description>
+    <Description>(Work in progress) Not an official Delphix project.
+
+ C# Project for interacting with Delphix API.
+
+https://github.com/DylanRamsook/Delphix.NETSDK
+</Description>
     <PackageTags>Delphix</PackageTags>
     <PackageId>Delphix.NETSDK</PackageId>
     <Product>Delphix.NET SDK</Product>
@@ -11,7 +16,7 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <AssemblyVersion>1.0.0.0</AssemblyVersion>
     <FileVersion>1.0.0.0</FileVersion>
-    <Version>1.0.4</Version>
+    <Version>1.0.7</Version>
   </PropertyGroup>
 
   <ItemGroup>
